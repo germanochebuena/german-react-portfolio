@@ -84,7 +84,7 @@ function App() {
       </select>
 
       <div className='my-5 space-y-3 bg-gray-50 p-5'>
-        <h2 className='text-2xl font-extrabold text-gray-500 text-center'>Payments <span className='text-indigo-600'>de summary</span></h2>
+        <h2 className='text-2xl font-extrabold text-gray-500 text-center'>Payments <span className='text-indigo-600'>summary</span></h2>
         <p className='text-xl text-gray-500 text-center font-bold'>{meses} Months</p>
         <p className='text-xl text-gray-500 text-center font-bold'>{formatearDinero(total)} Total to pay</p>
         <p className='text-xl text-gray-500 text-center font-bold'>{formatearDinero(pago)} Monthly payment</p>
