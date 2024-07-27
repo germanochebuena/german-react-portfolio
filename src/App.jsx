@@ -46,7 +46,7 @@ function App() {
 
 
   return(
-    <div className="my-20 max-w-lg mx-auto bg-white shadow p-10">
+    <div id="main-content" className="bg-white">
       <Header />
 
       <div className='flex justify-between my-6'>
