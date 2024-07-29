@@ -7,25 +7,26 @@ import {
   ApolloProvider,
   HttpLink
 } from '@apollo/client';
+import { setContext } from "@apollo/client/link/context";
+
+const middlewareLink = setContext(() => ({
+	headers: {
+		'X-Shopify-Storefront-Access-Token': import.meta.env.VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN
+	}
+}));
 
 const httpLink = new HttpLink({
-  uri: `https://${import.meta.env.VITE_SHOPIFY_STORE_DOMAIN}/api/2024-01/graphql.json`,
-  headers: {
-    'X-Shopify-Storefront-Access-Token': import.meta.env.VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN,
-    'Content-Type': 'application/graphql',
-  }
+	uri: `https://${import.meta.env.VITE_SHOPIFY_STORE_DOMAIN}/api/2024-01/graphql.json`
 });
 
-const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache(),
-  onError: ({ networkError, graphQLErrors }) => {
-    console.log('GraphQL Errors', graphQLErrors);
-    console.log('Network Error', networkError);
-  }
+const link = middlewareLink.concat(httpLink);
+
+export const client = new ApolloClient({
+	link,
+	cache: new InMemoryCache()
 });
 
-console.log(httpLink)
+console.log(link)
 const container = document.getElementById('root');
 const root = createRoot(container);
 

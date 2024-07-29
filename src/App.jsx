@@ -1,10 +1,12 @@
 import React from 'react';
 import ProductsGrid from './components/ProductsGrid';
+import './index.css';
+import Header from './components/Header'
 
 function App() {
   return (
     <div className="App">
-      <h1>Shopify Store Products</h1>
+      <Header />
       <ProductsGrid />
     </div>
   );
