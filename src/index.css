@@ -9,6 +9,17 @@ body{
   -o-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
+h1{
+      -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  color:#111827;
+}
+h1 span{
+    color:#01d8ff;
+    border-bottom: 4px solid #f9fafb;
+}
 img.placeholder {
     opacity: 0.4;
     transform: scale(0.4);

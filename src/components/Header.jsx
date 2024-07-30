@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logoImage from '/shopify.png'; // Adjust the path to your logo image
+import logoImage from '/shopify.png';
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false); // State to manage the hamburger menu toggle
@@ -9,7 +9,7 @@ function Header() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center py-3 md:justify-start md:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">
-                        <a href="/">
+                        <a href={`https://${import.meta.env.VITE_SHOPIFY_STORE_DOMAIN}`}>
                             <span className="sr-only">Your Company</span>
                             <img className="h-8 w-auto sm:h-10" src={logoImage} alt="Your Company Logo" />
                         </a>
@@ -28,17 +28,11 @@ function Header() {
                         </button>
                     </div>
                     <nav className="hidden md:flex space-x-10">
-                        <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            Features
+                        <a href={`https://${import.meta.env.VITE_SHOPIFY_STORE_DOMAIN}`} className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            Home
                         </a>
-                        <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            Pricing
-                        </a>
-                        <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            Docs
-                        </a>
-                        <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            About
+                        <a href={`https://${import.meta.env.VITE_SHOPIFY_STORE_DOMAIN}/cart`} className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            Cart
                         </a>
                     </nav>
                 </div>
