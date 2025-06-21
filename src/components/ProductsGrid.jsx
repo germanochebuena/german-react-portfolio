@@ -8,8 +8,26 @@ const ProductsGrid = () => {
     });
     const [isHovered, setIsHovered] = useState(false);
 
+    // Debug logging
+    console.log('GraphQL Query State:', { loading, error, data });
+    console.log('Environment Variables:', {
+      domain: import.meta.env.VITE_SHOPIFY_STORE_DOMAIN,
+      hasToken: !!import.meta.env.VITE_SHOPIFY_STOREFRONT_ACCESS_TOKEN
+    });
+
+    document.body.style.transition = 'background 0.3s ease';
+
     const changeBodyColor = (color, hoverState) => {
-      document.body.style.backgroundColor = color;
+      // Convert hex to rgba for transparency
+      const hexToRgba = (hex, alpha) => {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+      };
+      
+      const transparentColor = hexToRgba(color, 0.6);
+      document.body.style.background = `linear-gradient(180deg, ${color} 0%, ${transparentColor} 100%)`;
       setIsHovered(hoverState);
       if(hoverState){
         document.querySelector('h1').style.color = '#ffffff';
@@ -23,16 +41,35 @@ const ProductsGrid = () => {
     if (loading && !data) return <p className="text-center">Loading...</p>;
     if (error) {
       console.error('GraphQL Error:', error);
-      return <p className="text-red-500">Error: {error.message}. Check the console for more details.</p>;
+      console.error('Error Details:', {
+        message: error.message,
+        networkError: error.networkError,
+        graphQLErrors: error.graphQLErrors
+      });
+      return (
+        <div className="text-red-500 p-4">
+          <p>Error: {error.message}</p>
+          <p className="text-sm mt-2">Check the console for more details.</p>
+          {error.networkError && (
+            <p className="text-sm mt-1">Network Error: {error.networkError.message}</p>
+          )}
+        </div>
+      );
     }
   
     if (!data || !data.products || !data.products.edges.length) {
-      return <p className="text-gray-500 text-center">No data found.</p>;
+      console.log('No data found. Data structure:', data);
+      return (
+        <div className="text-gray-500 text-center p-4">
+          <p>No data found.</p>
+          <p className="text-sm mt-2">Data structure: {JSON.stringify(data, null, 2)}</p>
+        </div>
+      );
     }
   
     return (
       <div>
-        <h1 className="py-8 px-4 mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">A Headless Collection Page Done With <span>React</span></h1>
+        <h1 className="py-8 px-4 mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-black">A Headless Collection Page Done With <span>React</span></h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 pb-20">
           {data.products.edges.map(({ node }) => (
             <div key={node.id} className="max-w-sm rounded overflow-hidden shadow-lg bg-white transition duration-500 ease-in-out transform hover:scale-105"
@@ -41,7 +78,7 @@ const ProductsGrid = () => {
               <a href={`https://${import.meta.env.VITE_SHOPIFY_STORE_DOMAIN}/products/${node.handle}`} className="block p-4 flex flex-col justify-center">
                   <img src={node.images.edges[0]?.node.originalSrc || '/picture.png'} 
                       alt={node.title} 
-                      className={`${!node.images.edges.length ? 'placeholder' : ''} w-full h-auto object-cover`}
+                      className={`${!node.images.edges.length ? 'placeholder' : ''} w-full h-auto object-contain aspect-square object-center`}
                   />
                   <div className="px-6 py-4">
                   <div className="font-bold text-xl mb-2">{node.title}</div>
