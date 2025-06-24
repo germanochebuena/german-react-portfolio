@@ -55,7 +55,7 @@ const HomePage = () => {
       title: 'Calpak Travel',
       description: 'Contributed to PDP/PLP layouts, swatches, quick-add functionality, and ADA refactor.',
       technologies: ['Shopify', 'ADA Compliance', 'PDP/PLP', 'Quick Add'],
-      color: 'rgb(247, 241, 119)',
+      color: 'rgb(195, 185, 0)',
       link: 'https://www.calpaktravel.com/',
       country: 'US',
       category: 'Shopify'
@@ -385,7 +385,7 @@ const HomePage = () => {
                   Home
                 </Link>
                 <Link to="/product-list" className="block text-gray-400 hover:text-white transition-colors">
-                  Shopify Store
+                  Headless Product List
                 </Link>
                 <a href="mailto:germanochebuena@gmail.com" className="block text-gray-400 hover:text-white transition-colors">
                   Contact

@@ -41,7 +41,7 @@ function Header() {
                             to="/product-list" 
                             className={`text-base font-medium ${isActive('/product-list') ? 'text-blue-600' : 'text-gray-500 hover:text-gray-900'}`}
                         >
-                            Shopify Store
+                            Headless Product List
                         </Link>
                     </nav>
                 </div>
@@ -82,7 +82,7 @@ function Header() {
                                     className={`text-base font-medium ${isActive('/product-list') ? 'text-blue-600' : 'text-gray-900 hover:text-gray-700'}`}
                                     onClick={() => setIsOpen(false)}
                                 >
-                                    Shopify Store
+                                    Headless Product List
                                 </Link>
                             </nav>
                         </div>
