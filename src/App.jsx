@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 import Header from './components/Header';
-import HomePage from './pages/HomePage';
-import ProductList from './pages/ProductList';
-import ProjectPage from './pages/ProjectPage';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Lazy load pages
+const HomePage = lazy(() => import('./pages/HomePage'));
+const ProductList = lazy(() => import('./pages/ProductList'));
+const ProjectPage = lazy(() => import('./pages/ProjectPage'));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,11 +43,17 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/product-list" element={<ProductList />} />
-          <Route path="/project/:id" element={<ProjectPage />} />
-        </Routes>
+        <Suspense fallback={
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+          </div>
+        }>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/product-list" element={<ProductList />} />
+            <Route path="/project/:id" element={<ProjectPage />} />
+          </Routes>
+        </Suspense>
       </div>
     </Router>
   );
