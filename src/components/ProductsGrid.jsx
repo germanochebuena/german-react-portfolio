@@ -70,24 +70,39 @@ const ProductsGrid = () => {
     return (
       <div>
         <h1 className="py-8 px-4 mb-4 text-4xl text-center font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-black">A Headless Collection Page Done With <span>React</span></h1>
+        <p className="max-w-2xl mx-auto mb-8 text-center text-lg text-gray-700 bg-white/80 rounded-xl shadow-sm px-6 py-4 border border-blue-100">
+          <span className="font-semibold text-blue-600">Technical Overview:</span> This page demonstrates a <span className="font-bold">headless Shopify product collection</span> built with <span className="font-bold">React</span> and <span className="font-bold">Apollo Client</span>, fetching live product data via <span className="font-bold">GraphQL</span>. Each product card dynamically applies a hover background color based on a Shopify metafield, showcasing real-time UI theming powered by custom metafields. The layout is styled with <span className="font-bold">Tailwind CSS</span> for a modern, responsive experience.
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4 pb-20">
-          {data.products.edges.map(({ node }) => (
-            <div key={node.id} className="max-w-sm rounded overflow-hidden shadow-lg bg-white transition duration-500 ease-in-out transform hover:scale-105"
-            onMouseEnter={() => changeBodyColor(node.metafield?.value || '#f9fafb', true)}
-            onMouseLeave={() => changeBodyColor('#f9fafb', false)}>
-              <a href={`https://${import.meta.env.VITE_SHOPIFY_STORE_DOMAIN}/products/${node.handle}`} className="block p-4 flex flex-col justify-center">
-                  <img src={node.images.edges[0]?.node.originalSrc || '/picture.png'} 
-                      alt={node.title} 
-                      className={`${!node.images.edges.length ? 'placeholder' : ''} w-full h-auto object-contain aspect-square object-center`}
-                  />
-                  <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">{node.title}</div>
-                  <p className="text-gray-700 text-base" dangerouslySetInnerHTML={{ __html: node.descriptionHtml || 'No description available'}}></p>
-                  <p className="text-xl mt-3 text-gray-500 font-bold">{`${node.priceRange.minVariantPrice.amount} ${node.priceRange.minVariantPrice.currencyCode}`}</p>
-                  </div>
-              </a>
-          </div>        
-          ))}
+          {data.products.edges.map(({ node }) => {
+            // Validate metafield value is a hex color (e.g., #RRGGBB)
+            const brandColor = (node.metafield?.value && /^#[0-9A-Fa-f]{6}$/.test(node.metafield.value))
+              ? node.metafield.value
+              : '#f9fafb';
+
+            // Debug: log the metafield value and what will be used
+            console.log('Product:', node.title, 'Metafield value:', node.metafield?.value, 'Used color:', brandColor);
+
+            return (
+              <div
+                key={node.id}
+                className="max-w-sm rounded overflow-hidden shadow-lg bg-white transition duration-500 ease-in-out transform hover:scale-105"
+                onMouseEnter={() => changeBodyColor(brandColor, true)}
+                onMouseLeave={() => changeBodyColor('#f9fafb', false)}
+              >
+                <a href={`https://${import.meta.env.VITE_SHOPIFY_STORE_DOMAIN}/products/${node.handle}`} className="block p-4 flex flex-col justify-center">
+                    <img src={node.images.edges[0]?.node.originalSrc || '/picture.png'} 
+                        alt={node.title} 
+                        className={`${!node.images.edges.length ? 'placeholder' : ''} w-full h-auto object-contain aspect-square object-center`}
+                    />
+                    <div className="px-6 py-4">
+                    <div className="font-bold text-xl mb-2">{node.title}</div>
+                    <p className="text-gray-700 text-base" dangerouslySetInnerHTML={{ __html: node.descriptionHtml || 'No description available'}}></p>
+                    <p className="text-xl mt-3 text-gray-500 font-bold">{`${node.priceRange.minVariantPrice.amount} ${node.priceRange.minVariantPrice.currencyCode}`}</p>
+                    </div>
+                </a>
+            </div>        
+            )})}
         </div>
       </div>
     );

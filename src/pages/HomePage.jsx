@@ -388,7 +388,7 @@ const HomePage = () => {
                   Home
                 </Link>
                 <Link to="/product-list" className="block text-gray-400 hover:text-white transition-colors">
-                  Headless Product List
+                Shopify Headless PLP
                 </Link>
                 <a href="mailto:germanochebuena@gmail.com" className="block text-gray-400 hover:text-white transition-colors">
                   Contact
