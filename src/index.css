@@ -24,3 +24,53 @@ img.placeholder {
     opacity: 0.4;
     transform: scale(0.4);
 }
+
+/* Shimmer Animation */
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    #c0fef6 0%,
+    #ffecd0 25%,
+    #ffecd0 50%,
+    #ffecd0 75%,
+    #c0fef6 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 5s ease-in-out infinite;
+}
+
+.shimmer-overlay {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 95, 131, 0.1) 25%,
+    rgba(140, 194, 255, 0.2) 50%,
+    rgba(255, 95, 131, 0.1) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Optional: Add a subtle pulse effect to the name */
+.shimmer-bg .text-blue-600 {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}

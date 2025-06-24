@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
-import ProductsGrid from './components/ProductsGrid';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
-import Header from './components/Header'
+import Header from './components/Header';
+import HomePage from './pages/HomePage';
+import ProductList from './pages/ProductList';
+import ProjectPage from './pages/ProjectPage';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-
 
 function App() {
   useEffect(() => {
@@ -36,10 +38,16 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Header />
-      <ProductsGrid />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/product-list" element={<ProductList />} />
+          <Route path="/project/:id" element={<ProjectPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
