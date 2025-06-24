@@ -43,6 +43,14 @@ function Header() {
                         >
                             Shopify Headless PLP
                         </Link>
+                        <a
+                            href="https://german-demo.myshopify.com/"
+                            className="text-base font-medium text-gray-500 hover:text-green-700 hover:underline"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Demo Shopify Store
+                        </a>
                     </nav>
                 </div>
             </div>
@@ -84,6 +92,15 @@ function Header() {
                                 >
                                     Shopify Headless PLP
                                 </Link>
+                                <a
+                                    href="https://german-demo.myshopify.com/"
+                                    className="text-base font-medium text-gray-900 hover:text-green-700 hover:underline"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    Demo Shopify Store
+                                </a>
                             </nav>
                         </div>
                     </div>
