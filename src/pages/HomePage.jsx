@@ -25,13 +25,13 @@ const HomePage = () => {
       if (cardRef) {
         const atroposInstance = Atropos({
           el: cardRef,
-          activeOffset: 20,
-          rotateXMax: 10,
-          rotateYMax: 10,
-          duration: 300,
+          activeOffset: 40,
+          rotateXMax: 20,
+          rotateYMax: 20,
+          duration: 250,
           shadow: true,
-          shadowOffset: 20,
-          shadowScale: 1.1,
+          shadowOffset: 40,
+          shadowScale: 1.3,
           highlight: true,
         });
         atroposInstances.push(atroposInstance);
@@ -264,9 +264,9 @@ const HomePage = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="py-16 px-4 bg-white">
+      <section className="py-16 px-12 md:px-4 bg-gray-800">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-12">
             Technical Skills
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -514,7 +514,7 @@ const HomePage = () => {
       </section>
 
       {/* 3D About Section with Background - Desktop Only */}
-      <section className="py-16 px-4 relative overflow-hidden hidden md:block">
+      <section className="py-16 px-4 relative overflow-hidden bg-gray-800 hidden md:block">
         <div 
           ref={aboutSectionRef}
           className="atropos about-3d-section max-w-4xl mx-auto"
