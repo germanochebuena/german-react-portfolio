@@ -44,7 +44,7 @@ function Header() {
                             Shopify Headless PLP
                         </Link>
                         <a
-                            href="https://german-demo.myshopify.com/"
+                            href="https://german-demo.myshopify.com/?_ab=0&_bt=eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaDVuWlhKdFlXNHRaR1Z0Ynk1dGVYTm9iM0JwWm5rdVkyOXRCam9HUlZRPSIsImV4cCI6IjIwMjUtMDYtMjZUMTk6NDk6MDkuNTYzWiIsInB1ciI6InBlcm1hbmVudF9wYXNzd29yZF9ieXBhc3MifX0%3D--4ca564b7d5835fd6e5c1046581febc53db5c4302&_fd=0&_sc=1&key=48612a9489c3483e933d510e4c70d06907a486cea36d559ebba1f7dd6289a724&preview_theme_id=179504480546"
                             className="text-base font-medium text-gray-500 hover:text-green-700 hover:underline"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -93,7 +93,7 @@ function Header() {
                                     Shopify Headless PLP
                                 </Link>
                                 <a
-                                    href="https://german-demo.myshopify.com/"
+                                    href="https://german-demo.myshopify.com/?_ab=0&_bt=eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaEpJaDVuWlhKdFlXNHRaR1Z0Ynk1dGVYTm9iM0JwWm5rdVkyOXRCam9HUlZRPSIsImV4cCI6IjIwMjUtMDYtMjZUMTk6NDk6MDkuNTYzWiIsInB1ciI6InBlcm1hbmVudF9wYXNzd29yZF9ieXBhc3MifX0%3D--4ca564b7d5835fd6e5c1046581febc53db5c4302&_fd=0&_sc=1&key=48612a9489c3483e933d510e4c70d06907a486cea36d559ebba1f7dd6289a724&preview_theme_id=179504480546"
                                     className="text-base font-medium text-gray-900 hover:text-green-700 hover:underline"
                                     target="_blank"
                                     rel="noopener noreferrer"
